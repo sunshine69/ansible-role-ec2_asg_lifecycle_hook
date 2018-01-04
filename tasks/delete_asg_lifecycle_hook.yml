@@ -1,0 +1,8 @@
+- name: create ASG lifecycle hook
+  ec2_asg_lifecycle_hook:
+    region: "{{ region }}"
+    profile: "{{ profile|default(omit) }}"
+    state: absent
+    autoscaling_group_name: "{{ asg.name }}"
+    lifecycle_hook_name: "{{ asg_lifecycle_hook_name }}"
+  when: asg_lifecycle_hook_name|default()
